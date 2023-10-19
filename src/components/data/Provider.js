@@ -32,21 +32,27 @@ const Provider = (props) => {
       items[prev].stat = "correct";
       setItems([...items]);
       setPrev(-1);
-    } else {
+    }
+    if (items[current].index === items[prev].index) {
+      items[current].stat = "";
+      items[prev].stat = "";
+      setItems([...items]);
+      setPrev(-1);
+    }
+    if (items[current].id !== items[prev].id) {
       items[current].stat = "wrong";
       items[prev].stat = "wrong";
       setItems([...items]);
-      setWrong(per=>per+1)
+      setWrong((per) => per + 1);
       setTimeout(() => {
         items[current].stat = "";
         items[prev].stat = "";
         setItems([...items]);
         setPrev(-1);
-      }, 1000);
-    
+      }, 500);
     }
   }
- console.log(wrongs)
+  console.log(wrongs);
   function handleClick(id) {
     if (prev === -1) {
       items[id].stat = "active";
@@ -58,7 +64,7 @@ const Provider = (props) => {
   }
   const context = {
     items: items,
-    wrong:wrongs,
+    wrong: wrongs,
     check: check,
     handleClick: handleClick,
   };
