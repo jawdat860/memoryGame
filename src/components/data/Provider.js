@@ -27,6 +27,7 @@ const Provider = (props) => {
   function check(current) {
     if (
       items[current].id === items[prev].id &&
+      items[current].index !== items[prev].index &&
       items[current].index !== items[prev].index
     ) {
       items[current].stat = "correct";
@@ -38,12 +39,7 @@ const Provider = (props) => {
       setPrev(-1);
     }
 
-    if (items[current].index === items[prev].index) {
-      items[current].stat = "";
-      items[prev].stat = "";
-      setItems([...items]);
-      setPrev(-1);
-    }
+    
     if (items[current].id !== items[prev].id) {
       items[current].stat = "wrong";
       items[prev].stat = "wrong";
