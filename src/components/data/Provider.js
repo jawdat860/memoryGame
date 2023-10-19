@@ -77,7 +77,7 @@ const Provider = (props) => {
     wrong: wrongs,
     check: check,
     handleClick: handleClick,
-    win: win,
+   
   };
   return <Context.Provider value={context}>{props.children}</Context.Provider>;
 };
